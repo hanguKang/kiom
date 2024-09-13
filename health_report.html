@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="reset.css">
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"/></script>
+</head>
+<body>
+  <nav class="health_report_tab">
+    <h1 class="hide"> 건강리포트 주기별 정보 </h1>
+    <ul class="health_report_tab_list">
+      <li class="health_report_tab_item active"><a href="#" class="btn_tab_nav">주</a></li>
+      <li class="health_report_tab_item"><a href="#" class="btn_tab_nav">월</a></li>
+      <li class="health_report_tab_item"><a href="#" class="btn_tab_nav">년</a></li>
+    </ul>
+  </nav>
+  <p class="my_record">오늘 하루 나의 건강상태를 기록해 보세요.</p>
+  <section class="hi_chart_list">
+    <h1 class="hide">기능별 그래프</h1>
+    <article class="chart_box_sports chart_hi">
+      <h1 class="chart_tit"><span class="ico_hi ico_health"></span>운동</h1>
+      <figure class="highcharts-figure">
+        <div class="chart_container" id="chart_sports"></div>
+        <p class="highcharts-description">           
+        </p>
+      </figure>
+    </article>
+    <article class="chart_box_water chart_hi">
+      <h1 class="chart_tit"> <span class="ico_hi ico_water"></span>수분  </h1>
+      <figure class="highcharts-figure">
+        <div class="chart_container" id="chart_water"></div>
+        <p class="highcharts-description">           
+        </p>
+      </figure>
+    </article>
+    <article class="chart_box_sleep chart_hi">
+      <h1 class="chart_tit"> <span class="ico_hi ico_sleep"></span>수면  </h1>
+      <figure class="highcharts-figure">
+        <div class="chart_container" id="chart_sleep"></div>
+        <p class="highcharts-description">           
+        </p>
+      </figure>
+    </article>
+    <article class="chart_box_etc chart_hi">
+      <h1 class="chart_tit"> <span class="ico_hi ico_etc"></span>기타 </h1>
+      <figure class="highcharts-figure">
+        <div class="chart_container" id="chart_etc"></div>
+        <p class="highcharts-description">           
+        </p>
+      </figure>
+    </article>
+    <article class="chart_box_headache chart_hi">
+      <h1 class="chart_tit"> <span class="ico_hi ico_headache"></span>두통 </h1>
+      <figure class="highcharts-figure">
+        <div class="chart_container" id="chart_headache"></div>
+        <p class="highcharts-description">           
+        </p>
+      </figure>
+    </article>
+    <article class="chart_box_cold chart_hi">
+      <h1 class="chart_tit"> <span class="ico_hi ico_cold"></span>감기 </h1>
+      <figure class="highcharts-figure">
+        <div class="chart_container" id="chart_cold"></div>
+        <p class="highcharts-description">           
+        </p>
+      </figure>
+    </article>
+    <article class="chart_box_indigestion chart_hi">
+      <h1 class="chart_tit"><span class="ico_hi ico_indigestion"></span>기능성 소화불량 </h1>
+      <figure class="highcharts-figure">
+        <div class="chart_container" id="chart_indigestion"></div>
+        <p class="highcharts-description">           
+        </p>
+      </figure>
+    </article>
+  </section>
+  <script src="js/chart_pub.js" defer></script>
+  <script defer>
+
+    // let chart_tab_btns = document.querySelectorAll('.btn_tab_nav');
+    // let chart_items = document.querySelectorAll('.health_report_tab_item');
+    // let xAxis_data =  ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    // let getWeek = (date)=>{
+    //   const currentDate = date.getDate();
+    //   const firstDay = new Date(date.setDate(1)).getDay();
+    //   return Math.ceil((currentDate + firstDay) / 7);
+    // }
+    
+
+
+    // chart_tab_btns.forEach((btn)=>{
+    //   btn.addEventListener('click',function(){
+    //     let idx = Array.prototype.indexOf.call(chart_items, this.parentElement )
+    //     chart_items.forEach( (li_elmnt)=>{
+    //       li_elmnt.classList.remove('active');
+    //     })
+    //     chart_items[idx].classList.add('active');
+    //     if(idx === 0){
+    //       const week = getWeek(new Date()); //진료받은 주부터 시작인가         
+    //       xAxis_data = []
+    //     }else if(idx === 1){
+    //       xAxis_data = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    //     }else{
+    //       const year = new Date().getFullYear(); // 데이터가 언제까지 있을지 모른다.
+    //       xAxis_data = [];
+    //     }
+    //   });
+    // });
+
+    // //공통
+    // Highcharts.setOptions({
+    //   chart: {
+    //     type:'line'
+    //   },
+    //   credits: {
+    //     enabled: false
+    //   },
+    //   title: {
+    //     useHTML: true,
+    //   },
+    //   subtitle:{
+    //     useHTML: true,
+    //   },
+    //   legend: {
+    //     enabled: false
+    //   },
+    //   xAxis: {
+    //     categories : xAxis_data,
+    //     labels:{ 
+    //         // formatter() {
+    //         //     //return new Date(this.value).toLocaleString('default', { month: 'short' })
+    //         //     return Highcharts.dateFormat('%b', this.value);
+    //         // }      
+    //         useHTML: true,
+    //         formatter(){
+    //             return '<span class="hc-label">' + this.value + '</span>'
+    //         },
+    //         rotations : 0
+    //     },        
+    //   },
+    //   yAxis: {
+    //     title: {
+    //         text: '',
+    //         visible:false,
+    //     }, 
+    //     tickInterval:1, 
+    //     min:0, 
+    //     max:10       
+    // },
+    // plotOptions:{
+    //     series:{          
+    //       marker:{
+    //         radius:4,
+    //         height:16, 
+    //         width:16,
+    //         lineWidth:4,            
+    //         lineColor:'#ffffff',
+    //         enabled:true,
+    //         symbol: 'circle' //여러개를 사용할 때 모양이 자동으로 삼각형, 사각형 조정되는 것을 막는다. 
+    //       },          
+    //       lineWidth:2,
+    //     }
+    // },
+    // legend: {
+    //     floating:true,
+    //     layout: 'vertical',
+    //     align: 'right', //left, right, top, bottom
+    //     verticalAlign: 'middle'
+    // },
+    // tooltip: {
+    //     pointFormat: '{series.name} 성취가 <b>{point.y:,.0f}</b><br/>' +
+    //         ' / {point.x} 이러합니다.'
+    // }
+    // });
+
+    // let chart_list = {
+    //   //운동
+    //   sports : {
+    //     renderElemnt:'chart_sports',
+    //     title: '운동',
+    //     type:'line',
+    //     description:'능력발휘',
+    //     subtext:null,
+    //     color: 'rgba(23,190,207,1)',
+    //     opacity:'rgba(23,190,207,0.5)',
+    //     enabled:true,
+    //     data: {name:'운동', data: [ 1.2, 4, 2, 3, 5, 6, 10, 2.5, 6.3, 4.2, 1.8, 2 ]}
+    //   },
+    //   //수분
+    //   water : {
+    //     renderElemnt:'chart_water',
+    //     title: '수분',
+    //     type:'line',
+    //     description:'수분섭취',
+    //     subtext:'',
+    //     color: 'rgba(31,119,180,1)',
+    //     opacity: 'rgba(31,119,180,0.5)',
+    //     enabled:true,
+    //     data:  {name:'수분', data: [ 6.2, 5.8, 7.2, 6.5, 5.8, 6.8, 8.2, 7.5, 4.3, 8, 9, 6.4 ]}
+    //   },
+    //   //수면
+    //   sleep : {
+    //     renderElemnt:'chart_sleep',
+    //     title: '수면',
+    //     type:'line',
+    //     description:'수면질',
+    //     subtext:null,
+    //     color: 'rgba(148,103,189,1)',
+    //     opacity:'rgba(148,103,189,0.5)',
+    //     enabled:true,
+    //     data:  {name:'수면', data: [0.5, 3.4, 1.8, 2.4, 1.6, 4.2, 6.8, 5.9, 4.9, 7.2, 8.1, 4.5 ]}
+    //   },
+    //   //기타
+    //   etc : {
+    //     renderElemnt:'chart_etc',
+    //     title: '기타',
+    //     type:'line',
+    //     description:'기타',
+    //     subtext:null,
+    //     color: 'rgba(100,255,247,1)',
+    //     opacity:'rgba(100,255,247,0.5)',
+    //     enabled:true,
+    //     data:  {name:'기타', data:  [6.4, 7.2, 8.3, 4.5, 3.5, 3.6, 8.0, 6.4, 4.6, 2.5, 3.6, 4.3 ]}
+    //   },
+    //   //두통
+    //   headache : {
+    //     renderElemnt:'chart_headache',
+    //     title: '두통',
+    //     type:'line',
+    //     description:'두통의 정도',
+    //     subtext:null,
+    //     color: 'rgba(194,202,0,1)',
+    //     opacity:'rgba(194,202,0,0.5)',
+    //     enabled:true,
+    //     data:   {name:'두통', data: [ 2.4, 3.1, 4.5, 5.2, 6.3, 2.8, 3.8, 4, 1, 3, 6, 7 ]}
+    //   },
+    //   //감기
+    //   cold : {
+    //     renderElemnt:'chart_cold',
+    //     title: '감기',
+    //     type:'line',
+    //     description:'감기의 정도',
+    //     subtext:null,
+    //     color: 'rgba(28,89,69,1)',
+    //     opacity:'rgba(28,89,69,0.5)',
+    //     enabled:true,
+    //     data:   {name:'감기', data: [8.5, 7.4, 6.5, 4.3, 2, 1, 0, 4.5, 3.5, 6.8, 6, 5 ]}
+    //   },
+    //   //기능성소화장애
+    //   indigestion : {
+    //     renderElemnt:'chart_indigestion',
+    //     title: '기능성 소화장애',
+    //     type:'line',
+    //     description:'기능성 소화장애의 정도',
+    //     subtext:null,
+    //     color: 'rgba(138,114,70,1)',
+    //     opacity:'rgba(138,114,70, 0.5)',
+    //     enabled:true,
+    //     data:   {name:'기능성 소화장애', data:  [ 4, 6, 4.3, 3.2, 6, 7, 6.5, 7, 3, 2.8, 4, 5 ]}
+    //   }
+    // }
+
+    
+    
+
+    // drawChart(chart_list.sports);
+    // drawChart(chart_list.water);
+    // drawChart(chart_list.sleep);
+    // drawChart(chart_list.etc);
+    // drawChart(chart_list.headache);
+    // drawChart(chart_list.cold);
+    // drawChart(chart_list.indigestion);
+
+
+    // function drawChart(chartObj){
+
+    //   let series = (chartObj.enabled)? [chartObj.data] : chartObj.series;
+
+    //   Highcharts.chart({
+    //     chart: {
+    //       type:chartObj.type,
+    //       renderTo: chartObj.renderElemnt,
+    //       marginTop:50
+    //     },
+    //     accessibility: {
+    //         description: chartObj.title+' 그래프 x축(가로축은 시간) y축(세로축은 '+ chartObj.description +')를 의미합니다.'
+    //     },
+        
+    //     title: {
+    //         text: '', 
+    //         align:'left',
+    //         x:20
+    //     },
+    //     subtitle:{
+    //       text:chartObj.subtext,
+    //       align:'left',
+    //       x:20,
+    //     },
+    //     legend: {
+    //         //floating:true,
+    //         //layout: 'horizontal',
+    //         backgroundColor:'rgba(255,255,255,0.5)',
+    //         itemDistance:100,
+    //         align: 'left',
+    //         x:30, 
+    //         y:50, 
+    //         verticalAlign: 'top'
+    //     },
+    //     plotOptions:{
+    //       series:{          
+    //         marker:{
+    //           enabled:chartObj.enabled,
+    //         },          
+    //         lineWidth:2,
+    //       }
+    //     },
+    //     series: series
+    //   });
+
+    // }
+
+    
+
+
+
+    // //차트 종합
+    // // Highcharts.chart({
+    // //     chart: {
+    // //       type: 'areaspline',
+    // //       renderTo: 'chart_all',
+    // //     },
+    // //     accessibility: {
+    // //         description: '종합 그래프 x축(가로축은 시간) y축(세로축은 정도)를 의미합니다.'
+    // //     },
+        
+    // //     title: {
+    // //         text: '', 
+    // //         align:'left',
+    // //         x:20
+    // //     },
+    // //     subtitle:{
+    // //       text:'<span class="ico_hi_dot"><span> 전체적으로 어쩌구 저쩌구. <br/>하루에 최소한 세부사항의 권고사항을 따르세요.',
+    // //       align:'left',
+    // //       x:20,
+    // //     },
+    // //     plotOptions:{
+    // //       series:{          
+    // //             marker:{
+    // //               radius:4,
+    // //               height:8, 
+    // //               width:8,
+    // //               //maker를 항상 표시할지 마우스 오버시 나타나게 할지 설정하기
+    // //               enabled: false,
+    // //               lineWidth:1,
+    // //               //lineColor:'#ffffff',
+    // //             },
+    // //             lineWidth:2,
+    // //           }
+    // //     },
+    // //     series: seriesArr
+    // // });
+
+    
+  </script>
+</body>
+</html>

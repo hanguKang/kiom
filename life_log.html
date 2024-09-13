@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="reset.css">
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"/></script>
+</head>
+<body>
+  <nav class="health_report_tab">
+    <h1 class="hide"> 건강리포트 주기별 정보 </h1>
+    <ul class="health_report_tab_list">
+      <li class="health_report_tab_item active"><a href="#" class="btn_tab_nav">주</a></li>
+      <li class="health_report_tab_item"><a href="#" class="btn_tab_nav">월</a></li>
+      <li class="health_report_tab_item"><a href="#" class="btn_tab_nav">년</a></li>
+    </ul>
+  </nav>
+  <p class="my_record">오늘 하루 나의 건강상태를 기록해 보세요.</p>
+  <section class="hi_chart_list">
+    <h1 class="hide">기능별 그래프</h1>
+    <article class="chart_box_all chart_hi_all chart_hi wide">
+      <h1> <span class="ico_hi ico_health_all"></span><span class="name">홍길동</span>님 건강상태는! </h1>
+      <figure class="highcharts-figure">
+        <div class="chart_container" id="chart_all"></div>
+        <p class="highcharts-description">           
+        </p>
+      </figure>
+    </article>
+    <article class="chart_box_waterdigest chart_hi">
+      <h1 class="chart_tit"><span class="ico_hi ico_waterdigest"></span>수분대사 <button class="chart_show"><span class="hide">그래프 보기</span></button></h1>
+      <figure class="highcharts-figure chart_dirct">
+        <div class="chart_container" id="chart_waterdigest"></div>
+        <p class="highcharts-description">           
+        </p>
+      </figure>
+    </article>
+    <article class="chart_box_digest chart_hi">
+      <h1 class="chart_tit"> <span class="ico_hi ico_digest"></span>소화기능   <button class="chart_show"><span class="hide">그래프 보기</span></button></h1>
+      <figure class="highcharts-figure chart_dirct">
+        <div class="chart_container" id="chart_digest"></div>
+        <p class="highcharts-description">           
+        </p>
+      </figure>
+    </article>
+    <article class="chart_box_fever chart_hi">
+      <h1 class="chart_tit"> <span class="ico_hi ico_fever"></span>열대사   <button class="chart_show"><span class="hide">그래프 보기</span></button></h1>
+      <figure class="highcharts-figure chart_dirct">
+        <div class="chart_container" id="chart_fever"></div>
+        <p class="highcharts-description">           
+        </p>
+      </figure>
+    </article>
+    <article class="chart_box_habit chart_hi">
+      <h1 class="chart_tit"> <span class="ico_hi ico_habit"></span>건강습관  <button class="chart_show"><span class="hide">그래프 보기</span></button></h1>
+      <figure class="highcharts-figure chart_dirct">
+        <div class="chart_container" id="chart_habit"></div>
+        <p class="highcharts-description">           
+        </p>
+      </figure>
+    </article>
+    <article class="chart_box_mental chart_hi">
+      <h1 class="chart_tit"> <span class="ico_hi ico_mental"></span>정신건강  <button class="chart_show"><span class="hide">그래프 보기</span></button></h1>
+      <figure class="highcharts-figure chart_dirct">
+        <div class="chart_container" id="chart_mental"></div>
+        <p class="highcharts-description">           
+        </p>
+      </figure>
+    </article>
+    <article class="chart_box_female chart_hi">
+      <h1 class="chart_tit"> <span class="ico_hi ico_female"></span>여성건강  <button class="chart_show"><span class="hide">그래프 보기</span></button></h1>
+      <figure class="highcharts-figure chart_dirct">
+        <div class="chart_container" id="chart_female"></div>
+        <p class="highcharts-description">           
+        </p>
+      </figure>
+    </article>
+  </section>
+  <script src="js/chart_pub.js"></script>
+</body>
+</html>
