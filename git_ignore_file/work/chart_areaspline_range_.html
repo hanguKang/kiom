@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"/></script>
+  <style>
+  .highcharts-figure,
+  .highcharts-data-table table {
+      min-width: 320px;
+      max-width: 800px;
+      margin: 1em auto;
+  }
+
+  #container {
+      height: 450px;
+  }
+
+  .highcharts-data-table table {
+      font-family: Verdana, sans-serif;
+      border-collapse: collapse;
+      border: 1px solid #ebebeb;
+      margin: 10px auto;
+      text-align: center;
+      width: 100%;
+      max-width: 500px;
+  }
+
+  .highcharts-data-table caption {
+      padding: 1em 0;
+      font-size: 1.2em;
+      color: #555;
+  }
+
+  .highcharts-data-table th {
+      font-weight: 600;
+      padding: 0.5em;
+  }
+
+  .highcharts-data-table td,
+  .highcharts-data-table th,
+  .highcharts-data-table caption {
+      padding: 0.5em;
+  }
+
+  .highcharts-data-table thead tr,
+  .highcharts-data-table tr:nth-child(even) {
+      background: #f8f8f8;
+  }
+
+  .highcharts-data-table tr:hover {
+      background: #f1f7ff;
+  }
+
+  </style>
+</head>
+<body>
+  <figure class="highcharts-figure">
+    <div id="container"></div>
+    <p class="highcharts-description">
+        Demonstrating a basic area chart, also known as a mountain chart.
+        Area charts are similar to line charts, but commonly used to visualize
+        volumes.
+    </p>
+</figure>
+<script>
+  // Data retrieved from https://fas.org/issues/nuclear-weapons/status-world-nuclear-forces/
+Highcharts.chart('container', {
+    chart: {
+        type: 'areaspline'
+    },
+    accessibility: {
+        description: 'Image description: An area chart compares the nuclear ' +
+            'stockpiles of the USA and the USSR/Russia between 1945 and ' +
+            '2024. The number of nuclear weapons is plotted on the Y-axis ' +
+            'and the years on the X-axis. The chart is interactive, and the ' +
+            'year-on-year stockpile levels can be traced for each country. ' +
+            'The US has a stockpile of 2 nuclear weapons at the dawn of the ' +
+            'nuclear age in 1945. This number has gradually increased to 170 ' +
+            'by 1949 when the USSR enters the arms race with one weapon. At ' +
+            'this point, the US starts to rapidly build its stockpile ' +
+            'culminating in 31,255 warheads by 1966 compared to the USSR’s 8,' +
+            '400. From this peak in 1967, the US stockpile gradually ' +
+            'decreases as the USSR’s stockpile expands. By 1978 the USSR has ' +
+            'closed the nuclear gap at 25,393. The USSR stockpile continues ' +
+            'to grow until it reaches a peak of 40,159 in 1986 compared to ' +
+            'the US arsenal of 24,401. From 1986, the nuclear stockpiles of ' +
+            'both countries start to fall. By 2000, the numbers have fallen ' +
+            'to 10,577 and 12,188 for the US and Russia, respectively. The ' +
+            'decreases continue slowly after plateauing in the 2010s, and in ' +
+            '2024 the US has 3,708 weapons compared to Russia’s 4,380.'
+    },
+    title: {
+        text: '종합지수 개인지수 '
+    },
+    subtitle: {
+        text: 'Source: <a href="https://fas.org/issues/nuclear-weapons/status-world-nuclear-forces/" ' +
+            'target="_blank">FAS</a>'
+    },
+    xAxis: {
+        // min:Date.UTC(2024, 0, 1),
+        // max:Date.UTC(2024, 11, 31),
+        //tickWidth: 0,
+        //type:'datetime',
+        //tickInterval   : 24 * 3600 * 1000, //one day
+        categories : ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+        labels:{ 
+            // formatter() {
+            //     //return new Date(this.value).toLocaleString('default', { month: 'short' })
+            //     return Highcharts.dateFormat('%b', this.value);
+            // }      
+            useHTML: true,
+            formatter(){
+                return '<span class="hc-label">' +this.value + '</span>'
+            },
+            rotations : 0
+        },        
+        //allowDecimals: false,
+        accessibility: {
+            rangeDescription: '1년간 변화추이'
+        }
+    },
+    yAxis: {
+        title: {
+            text: '변화량 추이'
+        }
+    },
+    tooltip: {
+        pointFormat: '{series.name} 성취가 <b>{point.y:,.0f}</b><br/>' +
+            ' / {point.x} 이러합니다.'
+    },
+    plotOptions: {
+        area: {            
+            pointStart:1,
+            marker: {
+                enabled: false,
+                symbol: 'circle',
+                radius: 2,
+                states: {
+                    hover: {
+                        enabled: true
+                    }
+                }
+            }
+        }
+    },
+    series: [{
+        name: '종합 지수',        
+        fillColor: {
+                linearGradient: {
+                    x1: 0,
+                    y1: 0,
+                    x2: 1,
+                    y2: 0
+                },
+                stops: [
+                    [0, 'rgba(255,200,120,0.5)'],
+                    [1, 'rgba(120,20,180,0.5)']
+                ]
+        },
+        data: [
+            120, 400, 200, 300, 500, 600, 100, 250, 630, 420, 180, 240
+        ]
+    }, {
+        name: '개인 지수',
+        fillColor: {
+                linearGradient: {
+                    x1: 0,
+                    y1: 0,
+                    x2: 1,
+                    y2: 0
+                },
+                stops: [
+                [0, 'rgba(0,200,120,0.5)'],
+                [1, 'rgba(0,20,180,0.5)']
+                ]
+        },
+        data: [
+            140, 320, 180, 280, 420, 560, 130, 200, 280, 450, 250, 260
+        ]
+    }]
+});
+
+</script>
+</body>
+</html>

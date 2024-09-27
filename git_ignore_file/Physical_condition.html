@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:font-family: 'Noto Sans KR', sans-serif;}
+     .kiom_my_treatment_pg {padding:15px;}
+     .kiom_my_treatment_pg.ht400{height:160px;}
+     .kiom_my_treatment_pg.bg_blue {background-color:#14a7f9; padding:24px;}
+
+     .kiom_my_treatment_pg .kiom_article_head{}
+     .kiom_my_treatment_pg .kiom_article_head .tit{margin-top:20px; margin-bottom:20px; font-size:22px; font-weight:600;}
+     .kiom_my_treatment_pg .kiom_article_head .tit.wt{margin-top:0; color:white;}
+
+     .kiom_my_treatment_pg .kiom_article_conts{}
+
+     .kiom_my_treatment_pg .kiom_article_conts.physic_cond_prog_info{display: flex; align-items: stretch;}
+     .kiom_my_treatment_pg .kiom_article_conts.physic_cond_prog_info .physic_cond_info_box{flex:0 0 calc(100% - 62px); margin-right:12px;}
+     .kiom_my_treatment_pg .kiom_article_conts.physic_cond_prog_info .physic_cond_info_box li{margin-bottom:17px; height:20px; display:flex; justify-content: flex-start; align-items: center;}
+     .kiom_my_treatment_pg .kiom_article_conts.physic_cond_prog_info .physic_cond_info_box li>.ico_physic_cond{margin-right:4px; flex:0 0 20px; height:20px; background-size:contain; background-repeat:no-repeat;}
+     .kiom_my_treatment_pg .kiom_article_conts.physic_cond_prog_info li>.ico_physic_cond.ico_physic_cond_01{background-image:url(imgs/ico_40_dumbell.png);}
+     .kiom_my_treatment_pg .kiom_article_conts.physic_cond_prog_info .physic_cond_info_box li>.ico_physic_cond.ico_physic_cond_02{background-image:url(imgs/ico_40_water_drop.png)}
+     .kiom_my_treatment_pg .kiom_article_conts.physic_cond_prog_info .physic_cond_info_box li>.ico_physic_cond.ico_physic_cond_03{background-image:url(imgs/ico_40_sleep.png)}
+
+     .kiom_my_treatment_pg .kiom_article_conts.physic_cond_prog_info .physic_cond_info_box li>.physic_cond_name{margin-right:4px; font-size:17px; font-weight:400; color:white;}
+     .kiom_my_treatment_pg .kiom_article_conts.physic_cond_prog_info .physic_cond_info_box li>.physic_cond_bar[value]{flex:0 0 calc(100% - 92px);margin-right:4px; -webkit-appearance: none;
+   appearance: none; width:128px; background:none; height:16px; border-radius:8px;  }
+     .kiom_my_treatment_pg .kiom_article_conts.physic_cond_prog_info .physic_cond_info_box li>.physic_cond_bar[value]::-webkit-progress-bar {
+      overflow:hidden;
+      background-color: #55c1fe;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) inset;
+    }
+    .kiom_my_treatment_pg .kiom_article_conts.physic_cond_prog_info .physic_cond_info_box li>.physic_cond_bar[value]::-webkit-progress-value{
+      border-radius: 8px;
+      background-color: #005bc2;
+    }
+    .kiom_my_treatment_pg .kiom_article_conts.physic_cond_prog_info .physic_cond_info_box li>.physic_cond_val{font-size:18px; color:#ccff00;}
+
+    .kiom_my_treatment_pg .kiom_article_conts.physic_cond_prog_info .physic_cond_img{
+      flex:0 0 62px; background-color:white;
+    }
+
+    .kiom_article_head.dateshow{display: flex; justify-content: space-between; align-items: center;}
+    .ico_tit{flex:0 0 calc(100% - 120px);display: flex; align-items: center;}
+    .ico_tit .ico_article_head{margin-right:8px;flex:0 0 20px; height:20px; background-size:contain; background-repeat:no-repeat;}
+    .ico_tit .ico_article_head.ico_latest{background-image:url(imgs/ico_40_clinic.png);}
+    .ico_tit .ico_article_head.ico_target{background-image:url(imgs/ico_40_circle_target.png);}
+    .datepub{margin-right:10px; color:#005bc2; font-weight:500;}
+    
+    .clinic_list_item{display:flex; justify-content:space-between; margin-bottom:10px;  border:1px solid #dddddd; height:48px; border-radius:6px; font-weight:bold;}
+    .clinic_list_item a{flex:0 0 calc(100% - 104px);padding-left:24px; padding-right:80px; display:flex; justify-content:space-between; align-items:center; background:url(imgs/arrow-right.png) no-repeat 96% center/20px 20px; }
+
+    .kiom_my_treatment_pg.no-padding{padding:0; }
+    .kiom_my_treatment_pg.no-padding .kiom_article_head{padding:15px;}
+    .kiom_my_treatment_pg.no-padding .kiom_article_head .tit{margin-bottom:0;}
+    .ft_18{font-size:18px; }
+    .sleep_mode{padding:26px 55px; background-color:#f6f6f6; }
+    .sleep_mode .tit2{position:relative; color:#3e3d3d; font-weight:bold; margin-bottom:10px;}
+    .sleep_mode .tit2 .ico_outter_left{position:absolute; left: -38px; top:calc(50% - 16px); width:32px; height:32px; background:url(imgs/ico_64_sleep.png) no-repeat 0 0/contain;}
+    .sleep_mode p{font-size:14px; line-height:20px;}
+
+  
+  </style>
+</head>
+<body>
+  <article class="kiom_my_treatment_pg bg_blue ht400">
+    <div class="kiom_article_conts physic_cond_prog_info">
+      <div class="physic_cond_info_box">
+        <header class="kiom_article_head">
+          <h1 class="tit wt">나의 건강상태</h1>
+        </header>
+        <ul>
+          <li><span class="ico_physic_cond ico_physic_cond_01"></span><span class="physic_cond_name">운동</span><progress min="0" max="100" value="50" class="physic_cond_bar physic_cond_01"></progress> <em class="physic_cond_val">0%</em> </li>
+          <li><span class="ico_physic_cond ico_physic_cond_02"></span><span class="physic_cond_name">수분</span><progress min="0" max="100" value="0" class="physic_cond_bar physic_cond_02"></progress> <em class="physic_cond_val">0%</em> </li>
+          <li><span class="ico_physic_cond ico_physic_cond_03"></span><span class="physic_cond_name">수면</span><progress min="0" max="100" value="0" class="physic_cond_bar physic_cond_03"></progress> <em class="physic_cond_val">0%</em> </li>
+        </ul>
+      </div>
+      <div class="physic_cond_img"></div>
+    </div>
+    
+  </article>
+  <article class="kiom_my_treatment_pg">
+    <header class="kiom_article_head dateshow">
+      <h1 class="tit ico_tit"><span class="ico_latest ico_article_head"></span> 최근진료</h1>
+      <time datetime="2023-06-23" pubdate="pubdate" class="datepub">2023.06.28</time>
+    </header>
+    <ul class="clinic_list">
+      <li class="clinic_list_item ft18"><a href=""><b class="practice_medicine">주소증</b> <span class="practice_num">55B</span></a></li>
+      <li class="clinic_list_item ft18"><a href=""><b class="practice_medicine">치통</b> <span class="practice_num">44B</span></a></li>
+      <li class="clinic_list_item ft18"><a href=""><b class="practice_medicine">요통</b> <span class="practice_num">30B</span></a></li>
+    </ul>
+  </article>
+  <article class="kiom_my_treatment_pg no-padding">
+    <header class="kiom_article_head">
+      <h1 class="tit ico_tit"><span class="ico_target ico_article_head"></span>일상관리 티칭</h1>
+    </header>
+    <section class="sleep_mode">
+      <h1 class="tit2 ft18"><span class="ico_outter_left"></span>수면</h1>
+      <p>수면의 질과 양을 향상시키기 위해서는 규칙적인 수면 습관을 유지하고, 수면 환경을 개선하며, 수면 전 루틴을 확립하는 것이 중요합니다. 이러한 방법을 지속적으로 실천하면 좋은 수면의 질과 양을 유지할 수 있습니다. </p>
+    </section>
+  </article>
+</body>
+</html>

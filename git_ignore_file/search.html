@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    .ft20{font-size:20px;}
+    .ft16{font-size:16px;}
+    .ft14{font-size:14px;}
+    .ft12{font-size:12px;}
+  
+    .src_box_kiom{}
+    .src_box_kiom .srch_form_kiom{display:flex; align-items:center; padding:0 20px; height:40px; background-color:#14a7f9;}
+    .src_box_kiom .srch_form_kiom .btn_srch_kiom{appearance:none; background:none; border:0 none; }
+    .src_box_kiom .srch_form_kiom .btn_srch_kiom .ico_btn_srch{ display:block; width:16px; height:16px; background:url(imgs/btn_srch.png) no-repeat 0 0/contain;}
+    .srch_kiom{flex:0 0 calc(100% - 16px); background-color:#14a7f9; border:0 none;}
+    .srch_kiom:focus{outline:1px solid #fff;}
+    .srch_kiom::placeholder {
+     color: rgba(255,255,255,0.5); font-size:16px;
+    }
+
+    .src_box_kiom .srch_wd_kiom {display:flex; align-items: stretch; height:40px; }
+    .src_box_kiom .srch_wd_kiom .srch_wd_tit{display:flex;  font-weight:bold; }
+    .src_box_kiom .srch_wd_kiom .srch_wd_tit a{position:relative; display:flex; align-items:center; padding:0 20px; color:#a1a1a1;}
+    .src_box_kiom .srch_wd_kiom .srch_wd_tit.on a{ color:#000;}
+    .src_box_kiom .srch_wd_kiom .srch_wd_tit.on a::after{content:""; position:absolute; left:50%; bottom:0; transform:translate(-50%, 0); width:0; height:0; border:8px solid transparent; border-bottom-color:#f3f3f3;}
+    .src_box_kiom .srch_wd_rt_list{overflow:hidden; padding:20px; background-color:#f3f3f3;}
+    .src_box_kiom .srch_wd_rt_item{float:left; margin-right:6zpx; margin-bottom:4px; padding:4px 8px; border:1px solid #fff;border-radius:10px; background-color:#fff;} 
+    .src_box_kiom .srch_wd_rt_item.on{border-color:#000;}
+
+    .category_recommendation{padding:40px 20px;}
+    .category_recommendation_box{display:flex; flex-wrap:wrap; } 
+    .category_recommendation_item{position:relative; flex:0 0 calc(50% - 5px); padding-top:calc(50% - 5px); margin-bottom:10px; }
+    .category_recommendation_item:nth-child(even){ margin-left:5px;}
+    .category_recommendation_item:nth-child(odd){ margin-right:5px;}
+    .category_recommendation_item:nth-child(1){background:url(imgs/category_330_news.png) no-repeat 0 0/contain;}
+    .category_recommendation_item:nth-child(2){background:url(imgs/category_330_food_clinic.png) no-repeat 0 0/contain;}
+    .category_recommendation_item:nth-child(3){background:url(imgs/category_330_hard_blood.png) no-repeat 0 0/contain;}
+    .category_recommendation_item:nth-child(4){background:url(imgs/category_330_recommend_exercise.png) no-repeat 0 0/contain;}
+
+    .category_recommendation_item a{position:absolute; left:0; top:0; padding:22px; display: block; font-weight:6
+      00;}
+    .category_recommendation_item .wt{color:white;}
+
+  </style>
+</head>
+<body>
+  <article class="src_box_kiom">
+    <form action="" class="srch_form_kiom">
+      <button type="button" class="btn_srch_kiom"><span class="hide">검색</span><span class="ico_btn_srch"></span></button>
+      <input type="text" placeholder="검색어를 입력하세요"  class="srch_kiom">
+    </form>
+
+    <ul class="srch_wd_kiom ft14">
+      <li class="srch_wd_tit srch_wd_tit01 on"><a href="">최근 검색어</a></li>
+      <li class="srch_wd_tit srch_wd_tit02"><a href="">자주찾는 검색어</a></li>
+    </ul>
+    <ul class="srch_wd_rt_list">
+      <li class="srch_wd_rt_item ft12 on">치통</li>
+      <li class="srch_wd_rt_item ft12">수면</li>
+      <li class="srch_wd_rt_item ft12">교정치료</li>
+      <li class="srch_wd_rt_item ft12">운동</li>
+      <li class="srch_wd_rt_item ft12">다이어트</li>
+      <li class="srch_wd_rt_item ft12">아울렛</li>
+      <li class="srch_wd_rt_item ft12">수면</li>
+      <li class="srch_wd_rt_item ft12">교정치료</li>
+      <li class="srch_wd_rt_item ft12">수면치료</li>
+      <li class="srch_wd_rt_item ft12">수면 무호흡증</li>
+    </ul>
+</article>
+<article class="category_recommendation">
+  <h1 class="hide">추천 카테고리</h1>
+  <ul class="category_recommendation_box">
+    <li class="category_recommendation_item"><a href="" class="ft20 wt">건강뉴스 추천</a></li>
+    <li class="category_recommendation_item"><a href="" class="ft20">식치 추천</a></li>
+    <li class="category_recommendation_item"><a href="" class="ft20 wt">경혈 추천</a></li>
+    <li class="category_recommendation_item"><a href="" class="ft20"z>운동 추천</a></li>
+  </ul>
+</article>
+</body>
+</html>

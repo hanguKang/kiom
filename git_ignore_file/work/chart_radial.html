@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .highcharts-figure,
+    .highcharts-data-table table {
+        min-width: 320px;
+        max-width: 700px;
+        margin: 1em auto;
+    }
+
+    .highcharts-data-table table {
+        font-family: Verdana, sans-serif;
+        border-collapse: collapse;
+        border: 1px solid #ebebeb;
+        margin: 10px auto;
+        text-align: center;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .highcharts-data-table caption {
+        padding: 1em 0;
+        font-size: 1.2em;
+        color: #555;
+    }
+
+    .highcharts-data-table th {
+        font-weight: 600;
+        padding: 0.5em;
+    }
+
+    .highcharts-data-table td,
+    .highcharts-data-table th,
+    .highcharts-data-table caption {
+        padding: 0.5em;
+    }
+
+    .highcharts-data-table thead tr,
+    .highcharts-data-table tr:nth-child(even) {
+        background: #f8f8f8;
+    }
+
+    .highcharts-data-table tr:hover {
+        background: #f1f7ff;
+    }
+
+  </style>
+</head>
+
+<body>
+  <figure class="highcharts-figure">
+    <div id="container"></div>
+    <p class="highcharts-description">
+        A spiderweb chart or radar chart is a variant of the polar chart.
+        Spiderweb charts are commonly used to compare multivariate data sets,
+        like this demo using six variables of comparison.
+    </p>
+</figure>
+<div id="container2" style="width: 400px; height: 400px; margin: 0 auto"></div>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/highcharts-more.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>  
+  <script>
+Highcharts.chart('container', {
+
+  chart: {
+      polar: true,
+     margin:[0, 10, 90, 5], //상우하좌      
+      style: {//차트 전체 스타일 지정
+				color: '#444',
+			  fontFamily: 'notoSans',
+				fontWeight:'400'
+			},
+  },
+
+  accessibility: {
+      description: '웹 차트는 할당된 9가지 목표치를 비교합니다. ' +
+          '차트는 9가지 면을 의미합니다. 각 9가지는 그 기능의 수치를 각각 의미합니다.  ' +
+          '각 의미는 다음과 같습니다. : 운동, 수분, ' +
+          '수면, 수화기능, 수분대사, 열대사, 건강습관, 정신건강, 여성건강을 의미합니다. ' +
+          '각차타의 포인트에 마우스 오버나 키보드로 연결되면, ' +
+          '각 수치를 말풍선으로 표기해줍니다.' 
+  },
+
+  title: {
+      text: 'Budget vs spending',
+      x: -80
+  },
+
+  pane: {
+      size: '80%'
+  },
+
+  xAxis: {
+      categories: [
+          '운동', '수분', '수면', '수면', '소화기능', '수분대사', '열대사', '건강습관', '정신건강', '여성건강'
+      ],
+      tickmarkPlacement: 'on',
+      lineWidth: 0,
+      labels:{
+        y:10, 
+        style:{
+          color:'$444',
+          fontSize:'16px'
+        }
+      }
+  },
+
+  yAxis: {
+      gridLineInterpolation: 'polygon',
+      lineWidth: 0,
+      min: 0
+  },
+  tooltip: {
+      shared: true,
+      pointFormat: '<span style="color:{series.color}">{series.name}: <b>' +
+          '{point.y:,.0f}점</b><br/>'
+  },
+
+  legend: {
+      align: 'right',
+      verticalAlign: 'middle',
+      layout: 'vertical'
+  },
+  plotOptions: {
+      
+  },
+
+  series: [{
+      type: 'area',
+      name: '목표 수치', //Allocated budget    
+      data: [5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0 ],
+      //pointPlacement: 'on'
+      fillOpacity:0.5,
+  }, {
+      type: 'area',
+      name: '실제 수치', //Actual Spending
+      data: [4.0, 3.9, 4.2, 3.1, 2.6, 1.4, 3.0, 2.3, 4.2],
+      //pointPlacement: 'on'
+      fillOpacity:0.5, 
+  }],
+
+  responsive: {
+      rules: [{
+          condition: {
+              maxWidth: 500
+          },
+          chartOptions: {
+              legend: {
+                  align: 'center',
+                  verticalAlign: 'bottom',
+                  layout: 'horizontal'
+              },
+              pane: {
+                  size: '70%'
+              }
+          }
+      }]
+  }
+
+});
+
+  window.chart = new Highcharts.Chart({
+        
+        chart: {
+            renderTo: 'container2',
+            polar: true,
+            //type:'line',
+        },
+        
+        title: {
+            text: 'Highcharts Polar Chart'
+        },
+        
+        pane: {
+            startAngle: 0,
+            endAngle: 360
+        },
+    
+        xAxis: {
+            tickInterval: 36,
+            min: 0,
+            max: 360,  
+            lineWidth:0, //#1. 이 옵션과 #2 옵션 2가지가 있어야 다각형을 갖고 이를 없애면 원형 polar 생성         
+            labels: {
+                formatter: function () {
+                  let categories = {36: '운동', 72: '수분', 108: '수면', 144: '수면', 180: '소화기능', 216: '수분대사', 252: '열대사', 288: '건강습관', 324:'정신건강', 0: '여성건강'}
+                  return categories[this.value];
+                  //return this.value + '도';
+                }
+            }
+        },
+            
+        yAxis: {
+            gridLineInterpolation: 'polygon', // #2 이 옵션이 있어야 y축이 다각형을 갖는다. 
+            min: 0
+        },
+        
+        plotOptions: {
+            series: {
+                pointStart: 0,
+                pointInterval: 36 //45
+            },
+            column: {
+                pointPadding: 0,
+                groupPadding: 0
+            }
+        },
+    
+        series: [{
+            type: 'column',
+            name: 'Column',
+            data: [8, 7, 6, 5, 4, 3, 2, 1, 4, 7],
+            pointPlacement: 'between'
+        }, {
+            type: 'line',
+            name: 'Line',
+            data: [1, 2, 3, 4, 5, 6, 7, 8, 9 , 10]
+        }, {
+            type: 'area',
+            name: 'Area',
+            data: [1, 8, 2, 7, 3, 6, 4, 5, 4, 9]
+        }]
+    });
+  
+    // window.chart.options.chart.polar = false;
+    // console.log(window.chart.options.chart.polar);
+  </script>
+</body>
+
+</html>

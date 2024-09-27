@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="graph_box">
+		<figure class="highcharts-figure">
+		<div id="graph_div1" style="overflow: hidden;"></div>
+		</figure>
+	</div>
+  <div class="graph_box">
+		<figure class="highcharts-figure">
+		<div id="graph_div2" style="overflow: hidden;"></div>
+		</figure>
+	</div>
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <script>
+
+
+  //서울시감정노동자규모
+  Highcharts.chart('graph_div1', {
+    chart: {
+      zoomType: 'xy'
+    },
+    title: {
+      text: '서울시 감정노동자 규모',
+    },
+    subtitle: {
+      text: '(단위: 천명)'
+    },
+    xAxis: [{
+      type: 'category',
+      categories: ['2006', '2010', '2011', '2014', '2017', '2020'],
+      crosshair: true
+    }],
+    yAxis: [{ // Primary yAxis
+      min: 0,
+      title: {
+        text: '',
+        style: {
+          color: Highcharts.getOptions().colors[1]
+        }
+      }
+    }, { // Secondary yAxis
+      title: {
+        text: '',
+        style: {
+          color: Highcharts.getOptions().colors[0]
+        }
+      },
+      labels: {
+        //format: '{value} mm',
+        style: {
+          color: Highcharts.getOptions().colors[0]
+        }
+      },
+      opposite: true
+    }],
+    tooltip: {
+      shared: true
+    },
+    colors: ['#7eb6ea', '#fba936'],
+    series: [{
+      name: '취업자수',
+      type: 'column',
+      //yAxis: 1,
+      data: [4978, 4918, 5037, 5173, 5087, 5089],
+      tooltip: {
+        valueSuffix: '천명'
+      }
+
+    }, {
+      name: '감정노동자수',
+      type: 'spline',
+      data: [2259, 2181, 2468, 2406, 3239, 2426],
+      tooltip: {
+        valueSuffix: '천명'
+      }
+    }]
+  });
+
+  //전국감정노동자규모
+  Highcharts.chart('graph_div2', {
+    chart: {
+      zoomType: 'xy'
+    },
+    title: {
+      text: '전국 감정노동자 규모',
+    },
+    subtitle: {
+      text: '(단위: 천명)'
+    },
+    xAxis: [{
+      min: 0,
+      type: 'category',
+      categories: ['2006', '2010', '2011', '2014', '2017', '2020'],
+      crosshair: true
+    }],
+    yAxis: [{ // Primary yAxis
+      min: 0,
+      title: {
+        text: '',
+        style: {
+          color: Highcharts.getOptions().colors[1]
+        }
+      }
+    }, { // Secondary yAxis
+      title: {
+        text: '',
+        style: {
+          color: Highcharts.getOptions().colors[0]
+        }
+      },
+      labels: {
+        //format: '{value} mm',
+        style: {
+          color: Highcharts.getOptions().colors[0]
+        }
+      },
+      opposite: true
+    }],
+    tooltip: {
+      shared: true
+    },
+    colors: ['#7eb6ea', '#fba936'],
+    series: [{
+      name: '취업자수',
+      type: 'column',
+      //yAxis: 1,
+      data: [22470, 23041, 23439, 25050, 25878, 26800],
+      tooltip: {
+        valueSuffix: '천명'
+      }
+
+    }, {
+      name: '감정노동자수',
+      type: 'spline',
+      data: [9746, 9954, 11255, 9600, 13654, 11746],
+      tooltip: {
+        valueSuffix: '천명'
+      }
+    }]
+  });
+
+  /*
+  //임금수준비교
+  Highcharts.chart('graph_div3', {
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: '임금수준 비교(월)'
+    },
+    subtitle: {
+      text: '(단위: 백만원)'
+    },
+    xAxis: {
+      type: 'category'
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: ''
+      }
+    },
+    legend: {
+      enabled: false
+    },
+    colors: ['#7eb6ea', '#fba936', '#91d16a'],
+    series: [{
+      name: "",
+      colorByPoint: true,
+      data: [{
+        name: "전국평균",
+        y: 3278
+      },
+      {
+        name: "전국(상용직)",
+        y: 3449
+      },
+      {
+        name: "서비스업(서울)",
+        y: 2469
+      }]
+    }
+    ],
+  });
+
+  //서비스종사자 성별분포
+  Highcharts.chart('graph_div4', {
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: '서비스종사자 성별 분포(표준직업분류기준)'
+    },
+    subtitle: {
+      text: '(단위: %)'
+    },
+    xAxis: {
+      type: 'category'
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: ''
+      }
+    },
+    legend: {
+      enabled: false
+    },
+    colors: ['#7eb6ea', '#fba936'],
+    series: [{
+      name: "",
+      colorByPoint: true,
+      data: [{
+        name: "남성",
+        y: 27.6
+      },
+      {
+        name: "여성",
+        y: 72.4
+      }]
+    }
+    ],
+  });
+
+  //유통산업협력사비중
+  Highcharts.chart('graph_div5', {
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: '유통산업 협력사 비중'
+    },
+    subtitle: {
+      text: '(단위: %)'
+    },
+    xAxis: {
+      type: 'category'
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: ''
+      }
+    },
+    legend: {
+      enabled: false
+    },
+    colors: ['#7eb6ea', '#fba936'],
+    series: [{
+      name: "",
+      colorByPoint: true,
+      data: [{
+        name: "직영",
+        y: 27.7
+      },
+      {
+        name: "협력사",
+        y: 72.3
+      }]
+    }
+    ],
+  });
+
+  //공공기관콜센터운영현황
+  Highcharts.chart('graph_div6', {
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: '공공기관콜센터운영현황'
+    },
+    subtitle: {
+      text: '(단위: %)'
+    },
+    xAxis: {
+      type: 'category'
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: ''
+      }
+    },
+    legend: {
+      enabled: false
+    },
+    colors: ['#7eb6ea', '#fba936', '#91d16a'],
+    series: [{
+      name: "",
+      colorByPoint: true,
+      data: [{
+        name: "직영",
+        y: 32
+      },
+      {
+        name: "위탁",
+        y: 64
+      },
+      {
+        name: "혼합",
+        y: 4
+      }]
+    }
+    ],
+  });
+
+  //정신질환으로인한
+  Highcharts.chart('graph_div7', {
+    chart: {
+      zoomType: 'xy'
+    },
+    title: {
+      text: '정신질환으로 인한 산재현황'
+    },
+    subtitle: {
+      text: ''
+    },
+    xAxis: [{
+      categories: ['2012', '2013', '2014', '2015', '2016', '2017', '2018'],
+      crosshair: true
+    }],
+    yAxis: [{
+      labels: {
+        format: '{value} %',
+        style: {
+          color: Highcharts.getOptions().colors[1]
+        }
+      },
+      title: {
+        text: '승인율',
+        style: {
+          color: Highcharts.getOptions().colors[1]
+        }
+      }
+    }, {
+      title: {
+        text: '승인건수',
+        style: {
+          color: Highcharts.getOptions().colors[0]
+        }
+      },
+      labels: {
+        format: '{value} 건',
+        style: {
+          color: Highcharts.getOptions().colors[0]
+        }
+      },
+      opposite: true
+    }],
+    tooltip: {
+      shared: true
+    },
+    legend: {
+      layout: 'vertical',
+      align: 'left',
+      x: 120,
+      verticalAlign: 'top',
+      y: 100,
+      floating: true,
+      backgroundColor:
+        Highcharts.defaultOptions.legend.backgroundColor ||
+        'rgba(255,255,255,0.25)'
+    },
+    colors: ['#7eb6ea', '#fba936', '#91d16a'],
+    series: [{
+      name: '승인건수',
+      type: 'column',
+      yAxis: 1,
+      data: [47, 53, 47, 63, 85, 126, 201],
+      tooltip: {
+        valueSuffix: '건'
+      }
+    },
+    {
+      name: '신청건수',
+      type: 'column',
+      yAxis: 1,
+      data: [127, 137, 137, 165, 183, 213, 268],
+      tooltip: {
+        valueSuffix: '건'
+      }
+    }, {
+      name: '승인율',
+      type: 'spline',
+      data: [37, 38.6, 34.3, 38.1, 46.4, 59.1, 75],
+      tooltip: {
+        valueSuffix: '%'
+      }
+    }]
+  });
+
+  //서울시감정노동자규모
+  Highcharts.chart('graph_div8', {
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: '감정노동자 정신건강 실태조사(2019)'
+    },
+    subtitle: {
+      text: '(단위: %)'
+    },
+    xAxis: {
+      type: 'category'
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: ''
+      }
+    },
+    legend: {
+      enabled: false
+    },
+    colors: ['#7eb6ea', '#fba936', '#91d16a', '#4993ff', '#d5d5d5'],
+    series: [{
+      name: "",
+      colorByPoint: true,
+      data: [{
+        name: "스트레스 고위험군(남)",
+        y: 11.1
+      },
+      {
+        name: "스트레스 고위험군(여)",
+        y: 17.1
+      },
+      {
+        name: "우울증 유병율(일반)",
+        y: 6
+      },
+      {
+        name: "우울증 유병율(감정노동자)",
+        y: 44.1
+      },
+      {
+        name: "자살고위험군비중(전체)",
+        y: 18.2
+      }]
+    }
+    ],
+  });
+*/
+  </script>
+</body>
+
+</html>
