@@ -1,4 +1,6 @@
 
+.con{background:#e7f8fa;}    
+.con.dep1{padding: 26px 20px 20px;}
 /*차트*/
 .hi_chart_list,
 .life_log_nav {padding:20px 0; background-color:#E6F8FA;}
@@ -8,6 +10,10 @@
     min-width: 320px;
     max-width: 800px;
     margin: 1em auto;
+}
+.highcharts-figure.chart_radial{
+    min-width:160px;
+    margin:0;
 }
 /* .wide{ overflow-x:scroll; }
 .wide .highcharts-figure{
@@ -101,3 +107,106 @@
 .life_log_navItem > a > .life_text{}
 
 
+/* selectCustomInfo */
+.banner_kiom.swiper{position:relative; margin-top:16px; padding-bottom:30px; height:auto; border-bottom:1px solid #d9d9d9;}
+.banner_kiom.swiper .swiper-wrapper{margin:0 25px 12px 25px;  height:auto; border-radius:8px; border:1px solid #dedede;}
+.banner_kiom.swiper .swiper-wrapper .swiper-slide{position:relative; width:100%; padding-top:87.5%;}
+.banner_kiom.swiper .swiper-wrapper .swiper-slide img{position:absolute; top:0; left:0; width:100%; }
+.banner_kiom.swiper .swiper-button-prev{position:absolute; left:0; top:50%; transform:translateY(-50%); width:24px; height:24px; background:url(./imgs/icon/icon_24/arr_prev.png);}
+.banner_kiom.swiper .swiper-button-next{position:absolute; right:0; top:50%; transform:translateY(-50%);width:24px; height:24px; background:url(./imgs/icon/icon_24/arr_next.png);}
+.banner_kiom.swiper .detail_tit > h1 {font-size:16px; font-weight:500; line-height:1.5; text-align:center;}
+
+.kiom_h4{margin-top:30px; margin-bottom:8px;}
+.tip_box{padding:10px; margin-top:16px;  background-color:#17BDCD; border-radius:4px 20px 20px 20px; color:#fff;  }
+
+.kiom_effect.con{margin-top:30px; padding:26px 20px 20px; border-radius:30px; border-radius:30px; background-color:#fff; }
+.kiom_effect_tit{font-size:16px; font-weight:500;}
+.ref_box{margin-top:14px; margin-bottom:20px; }
+.kiom_effect_tit.sm, 
+.ref_txt, 
+.ref_no {font-size:14px; }
+.kiom_effect_list{margin-top:8px; padding:0; width:calc(100% + 8px); display:flex; justify-content:flex-start; flex-wrap:wrap;  }
+.kiom_effect_list .kiom_effect_item{padding:6px 15px; margin-right:8px; font-size:8px; line-height:1.5; border-radius:18px; color:#17BDCD; border:1px solid #17BDCD; }
+
+
+/* 나의 건강 상태 */
+
+.kiom_txt_box{ overflow:hidden; margin-bottom:16px;  padding:12px; border-radius:10px; background:#fff;}
+.my_health_state{padding-bottom:24px;}
+.kiom_default_txt{margin-bottom:24px; font-size:16px; line-height:1.5;}
+.my_health_state .my_health_stat_tit{margin-bottom:0; font-size:18px; line-height:1.5; font-weight:600; color:#17BDCD;}
+.style_wrap{display:flex; justify-content:space-between; align-items: flex-end;}
+.style_wrap .my_type{display:flex; flex-direction:column; justify-content:space-between; align-items:center; flex:0 0 20%; text-align:center; }
+.style_wrap .my_type img{ }
+.style_wrap .highcharts-figure{flex:0 0 66%; }
+.style_wrap .highcharts-figure .my_health_state {width:100%;}
+.my_health_state_txt{text-align:center; padding-bottom:30px;} 
+
+.clinic_box{display:flex; justify-content:space-between; margin-top:12px; padding-bottom:11px; font-size:16px; font-weight:500; letter-spacing:-1px; line-height:1.5; border-bottom:1px solid #d9d9d9; }
+.type_treatment_list{}
+.type_treatment_item{ margin-top:12px; }
+.type_treatment_item > b {display:block; font-size:16px; font-weight:500; }
+.type_steps_list{display: flex; margin-top:6px; height:24px; border-radius:6px; }
+.type_steps_item{flex:0 0 10%; height:24px; display: flex; justify-content:center; align-items:center; color:#fff;}
+.type_steps_item.active{position:relative; z-index:1; color:#000; outline:2px solid #000;}
+.type_steps_item01{background-color:#c2f3fa; }
+.type_steps_item02{background-color:#88f1d7; }
+.type_steps_item03{background-color:#c6eb8f; }
+.type_steps_item04{background-color:#d2eb3a; }
+.type_steps_item05{background-color:#fdf8a1; }
+.type_steps_item06{background-color:#fff8a6; }
+.type_steps_item07{background-color:#ffe3a7; }
+.type_steps_item08{background-color:#ffb5a1; }
+.type_steps_item09{background-color:#f8998f; }
+.type_steps_item10{background-color:#fe8a92; }
+
+.my_health_stat_box{position:relative; border-radius:10px; padding:56px 8px 20px 8px; margin-top:12px; margin-bottom:16px; background-color:#fffce6;}
+.my_health_stat_box-2{background-color:#fef2f6;}
+.my_health_stat_list{display:flex; justify-content:space-between;}
+.my_health_stat_item{ flex:1 0 0; display:flex; align-items:center; justify-content:center; flex-direction:column; text-align:center;}
+.my_health_stat_item .img_box{display:flex; justify-content:center; align-items:center; width:80px; height:80px; background-color:#ccc; border-radius:40px;}
+.my_health_stat_item.active .img_box{ background-color:#17BDCD;}
+.my_health_stat_item .my_health_stat_txt{ margin-top:6px; font-size:16px; line-height:1.5; font-weight:600;}
+.my_health_stat_box .more_manage{position:absolute; right:8px; top:12px; padding-right:24px; background:url(./imgs/icon/icon_24/ico_right.png) no-repeat 100% 50%;}
+.my_health_state .highcharts-radial-axis-labels>span>.hc-label{opacity:1;}
+
+
+.manage_list{}
+.manage_item{display:flex; justify-content:space-between; margin-top:10px; padding-bottom:10px; height:92px; border-bottom:1px solid #dedede;}
+.manage_item .manage_img_box{position:relative; flex:0 0 80px; display:flex; justify-content:center; align-items:center;  margin-right:40px; width:80px; height:80px; border-radius:50%; border:1px solid #dedede;}
+.manage_item.active .manage_img_box:before{position:absolute; content:''; left:-1px; top:-1px; width:80px; height:80px; background:url(./imgs/icon/icon_40/add_circle.png) no-repeat 0 0; }
+.manage_item.active .manage_img_box img{opacity:0.1;}
+.manage_item .manage_txt_box{flex: 0 0 calc(100% - 120px);  }
+.manage_item .manage_txt_box .manage_tit{font-size:16px; font-weight:600; line-height:1.5; margin-bottom:4px; height:24px;}
+
+.main_link{margin-top:16px;}
+.main_link_list{margin-top:16px;}
+.main_link_item{box-sizing:border-box; margin-top:16px; padding:20px 90px 14px 20px; height:120px; border-radius:10px;}
+.main_link_item01{background: url(./imgs/doctor.png) 100% 100% no-repeat , url(./imgs/icon/icon_24/ico_link_arr.png) 20px 82px no-repeat ;  background-color:#cfe2f3;}
+.main_link_item02{background: url(./imgs/life_log.png) no-repeat 100% 100%, url(./imgs/icon/icon_24/ico_link_arr.png) no-repeat 20px 82px; background-color:#dad2e9;}
+.main_link_item03{background: url(./imgs/health_report.png) no-repeat 100% 100%, url(./imgs/icon/icon_24/ico_link_arr.png) no-repeat 20px 82px; background-color:#d8ead2;}
+.main_link_item .link_tit{margin-bottom:8px; font-size:18px; font-weight:600; color:#222;}
+.main_link_item .link_txt{font-size:16px; font-weight:500; line-height:1.2; color:#444;}
+
+.msg_list{margin-top:20px;}
+.msg_area{margin-top:16px; padding:10px 20px 20px 20px; background-color:#fff; border-radius:10px;}
+.msg_area .time_date{font-size:14px; font-weight:500; line-height:1.5; text-align:right; height:28px; border-bottom:1px solid #efefef;}
+.msg_area header{display:flex; margin:20px 0;}
+.msg_area header .mgs_img_box{flex:0 0 80px; width:80px; height:80px; border-radius:50%; overflow:hidden; }
+.msg_area header .msg_txt{flex:0 0 calc(100% - 90px); box-sizing:border-box; margin-left:10px; line-height:1.5; color:#222;}
+.msg_area header .msg_txt b{display: block;}
+.btn_box a {
+    height: 40px;
+    line-height: 38px;
+    font-weight: 200;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.btn_box a.default{
+    background-color:#fff;
+    color:#222;
+    border:1px solid #17BDCD;
+}
+
+#main .main_wrap .welcome_area .welcome_tit{display:flex; justify-content:space-between; align-items:center;}
+#main .main_wrap .welcome_area .welcome_tit .msg_link{color:#222;}

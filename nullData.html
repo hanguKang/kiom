@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/stock/highstock.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"/></script>
+
+</head>
+<body>
+  <div id="container" style="height: 300px"></div>
+  <script defer>
+    Highcharts.wrap(Highcharts.Axis.prototype, 'translate', function (proceed) {
+    // Normal Translation
+    var result = proceed.apply(this, [].slice.call(arguments, 1));
+    // Apply curving
+    var line = 697,
+        scaleDown = 0.25; //  0.5 => 2 times tighter,
+                          //  0.25 => 4 times, etc.
+    //console.log(arguments);
+    //console.log(this);
+    console.log(this.max - this.min);
+    if (this.options.curvature) {
+        var val = ((arguments[1] - this.min) / (this.max - this.min));
+        if (arguments[1] < line) { //low
+            val = val * scaleDown;
+        } else { //high
+            var plus = (line - this.min) * (1 - scaleDown);
+            var scaleUp = ((arguments[1] - line) / (this.max - line));
+            val = val - (((1 - scaleUp) * plus) / (this.max - this.min));
+        }
+        result = (this.len * val);
+        if (arguments[2] == 0) {
+            result = this.len - result;
+        }
+    }
+    return result;
+});
+
+var usdeur = [
+    [Date.UTC(2014, 7, 1), 320],
+    [Date.UTC(2014, 8, 1), 411],
+    [Date.UTC(2014, 9, 1), 390],
+    [Date.UTC(2014, 10, 1), 500],
+    [Date.UTC(2014, 11, 1), 560],
+    [Date.UTC(2015, 0, 1), 590],
+    [Date.UTC(2015, 1, 1), 700],
+    [Date.UTC(2015, 2, 1), 750],
+    [Date.UTC(2015, 2, 16), 750],
+    [Date.UTC(2015, 3, 1), 850],
+    [Date.UTC(2015, 4, 1), 820],
+    [Date.UTC(2015, 5, 1), 780],
+    [Date.UTC(2015, 6, 1), 800]
+]
+
+var same = [
+    [Date.UTC(2014, 7, 1), 800],
+    [Date.UTC(2014, 8, 1), 790],
+    [Date.UTC(2014, 9, 1), null],
+    [Date.UTC(2014, 10, 1), null],
+    [Date.UTC(2014, 11, 1), 789],
+    [Date.UTC(2015, 0, 1), 800],
+    [Date.UTC(2015, 1, 1), 814],
+    [Date.UTC(2015, 2, 1), 760],
+    [Date.UTC(2015, 2, 16), 810],
+    [Date.UTC(2015, 3, 1), 840],
+    [Date.UTC(2015, 4, 1), 850],
+    [Date.UTC(2015, 5, 1), 835],
+    [Date.UTC(2015, 6, 1), 821]
+]
+
+var low = [
+    [Date.UTC(2014, 7, 1), 300],
+    [Date.UTC(2014, 8, 1), 320],
+    [Date.UTC(2014, 9, 1), 390],
+    [Date.UTC(2014, 10, 1), 367],
+    [Date.UTC(2014, 11, 1), 389],
+    [Date.UTC(2015, 0, 1), 370],
+    [Date.UTC(2015, 1, 1), 314],
+    [Date.UTC(2015, 2, 1), 360],
+    [Date.UTC(2015, 2, 16), 310],
+    [Date.UTC(2015, 3, 1), 340],
+    [Date.UTC(2015, 4, 1), 350],
+    [Date.UTC(2015, 5, 1), 335],
+    [Date.UTC(2015, 6, 1), 321]
+]
+
+$('#container').highcharts({
+
+    title: {
+        text: null
+    },
+
+    xAxis: {
+        type: 'datetime', // Added to convert UTC to actual date
+        tickmarkPlacement: 'on',
+        labels: {
+            style: {
+                color: '#003e5f',
+                whiteSpace: 'nowrap'
+            }
+        },
+        gridLineWidth: 0,
+    },
+
+    yAxis: {
+        opposite: true,
+        labels: {
+            enabled: true, // comment this out if you want to see the ticks on the left
+            style: {
+                color: '#003e5f'
+            }
+        },
+        title: {
+            text: null
+        },
+        min: 300,
+        max: 850,
+        tickInterval: 50,
+        curvature: true,
+        gridLineWidth: 2,
+        showFirstLabel: false,
+        gridLineWidth: 1
+    },
+
+    plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: true,
+                color: '#003e5f',
+                y: 23
+            },
+        },
+        series: {
+            color: '#003e5f',
+            cursor: 'pointer',
+            marker: {
+                lineWidth: 1,
+                lineColor: '#003e5f'
+            },
+            stickyTracking: false
+        }
+    },
+
+    exporting: {
+        enabled: false
+    },
+
+    credits: {
+        enabled: false
+    },
+
+    series: [{
+        data: same,
+        //connectNulls: true,  We're not using this ATM since I'm over
+        showInLegend: false,
+        name: 'Score'
+    }, {
+        data: [
+            [Date.UTC(2014, 8, 1), 790],
+            [Date.UTC(2014, 11, 1), 789]
+        ],
+        enableMouseTracking: false,
+        showInLegend: false,
+        dashStyle: 'Dash',
+        marker: {
+            enabled: false
+        }
+    }]
+
+});
+  </script>
+</body>
+</html>
